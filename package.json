@@ -1,0 +1,11 @@
+{
+  "name": "personal-trainer",
+  "version": "1.0.0",
+  "description": "A site for personal trainers to manage clients",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Sackfield",
+  "license": "ISC"
+}
