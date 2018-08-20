@@ -6,4 +6,4 @@ const PlanSchema = new Schema({
   exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exercise" }]
 })
 
-const Plan = module.exports = Model('Plan', PlanSchema)
+const Plan = module.exports = mongoose.model('Plan', PlanSchema)

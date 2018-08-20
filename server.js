@@ -16,7 +16,7 @@ const UserRoutes = require('./routes/User')
 // Database
 mongoose.Promise = global.Promise
 mongoose
-  .connect(process.env.DB_HOST)
+  .connect(process.env.DB_HOST, { useNewUrlParser: true })
   .then(() => console.log(`Connected to DB ${process.env.DB_HOST}`))
   .catch((err) => console.log(`DB Error:${err}`))
 
