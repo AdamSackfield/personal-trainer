@@ -1,15 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/stateful/App';
+
+// Router Setup
 import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history'
+import { createBrowserHistory } from 'history';
+
+// Redux Store
+import { Provider } from 'react-redux';
+import store from './store/store'
 
 import './index.scss';
 
-import App from "./components/stateful/App";
 
 ReactDOM.render(
-  <Router history={createBrowserHistory({})}>
-    <App />
-  </Router>,
-  document.getElementById("app")
+	<Provider store={store}>
+		<Router history={createBrowserHistory({})}>
+			<App />
+		</Router>
+	</Provider>,
+	document.getElementById('app')
 );
