@@ -1,24 +1,27 @@
 import axios from 'axios'
 import history from '../../hoc/history'
+import { REGISTER, ERROR } from '../types';
 
 const ROOT_URL = 'http://localhost:9898/user/create'
 
-const onSuccess = (type = null, payload = null, success) => {
-  console.log('Success', success)
+const onSuccess = (dispatch, type = null, payload = null) => {
+  dispatch({ type, payload })
+  dispatch({ type: ERROR, payload: 'Account created.' })
+	history.push('/')
 }
 
-const onError= (type = null, payload = null, success) => {
-  console.log('Success', success)
+const onError= (dispatch, type = null, payload = null) => {
+  dispatch({ type, payload })
+  history.push('/signup')
 }
 
 export function signUp({ username, password }) {
-  console.log('DATA', password)
   return async dispatch => {
     try {
-      const success = await axios.post(`${ROOT_URL}`, { username, password })
-        return onSuccess(1, 2, success)
+      const response = await axios.post(`${ROOT_URL}`, { username, password })
+        return onSuccess(dispatch, REGISTER, response.data.user)
     } catch(error) {
-        return onError(1, 2, error)
+        return onError(dispatch, ERROR, response.data.message)
     }
   }
 }
