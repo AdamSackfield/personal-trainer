@@ -8,3 +8,7 @@ const UserSchema = new Schema({
 })
 
 const User = module.exports = mongoose.model('User', UserSchema)
+
+module.exports.register = (newUser, callback) => {
+  newUser.save(callback)
+}

@@ -26,15 +26,16 @@ const createUser = (req, res) => {
 
   bcrypt.genSalt(10, (err, salt) => {
     if(err) {
-      res.json({
+      return res.status(400).json({
         success: false,
         message: 'Bcrypt genSalt Error',
         error: err
       })
     }
+    console.log('PASSWORD', req.body)
     bcrypt.hash(req.body.password, salt, (err, hash) => {
       if(err) {
-        res.json({
+        return res.status(401).json({
           success: false,
           message: 'Bcrypt Hash Error',
           error: err
@@ -43,21 +44,22 @@ const createUser = (req, res) => {
 
       newUser.password = hash
 
-      User.create(newUser, (err, user) => {
-        if(!user) {
-          res.json({
+      User.register(newUser, (err, user) => {
+        if(err) {
+          return res.status(402).json({
             success: false,
             message: 'Failed to GET:[USERS]',
             error: err
           })
         }
-        res.json({
+        res.json({ 
           success: true,
           user
         })
       })
     })
   })
+  
 }
 
 module.exports = {
