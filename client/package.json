@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
     "css-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.3",
@@ -18,8 +19,11 @@
     "webpack": "^4.17.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-runtime": "^6.26.0",
     "bulma": "^0.7.1",
     "bulma-extensions": "^2.2.1",
+    "history": "^4.7.2",
     "prop-types": "^15.6.2",
     "react-hot-loader": "^4.3.4",
     "react-redux": "^5.0.7",
