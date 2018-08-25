@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
-import DashboardComp  from '../../../stateless/Ui/User/Dashboard'
+import Profile from '../../../stateless/Ui/User/Dashboard/Profile'
 
   class Dashboard extends Component {
     render() {
-      return this.props.User ? <DashboardComp user={this.props.User} /> : <p>Loading...</p>
+      return this.props.User ? <Profile user={this.props.User} /> : <p>Loading...</p>
     }
 
   }
