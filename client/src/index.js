@@ -10,13 +10,25 @@ import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import store from './store/store'
 
+// Flash Messages
+import { Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+const options = {
+  position: 'bottom center',
+  timeout: 5000,
+  offset: '30px',
+  transition: 'scale'
+}
+
 import './index.scss';
 
 
 ReactDOM.render(
 	<Provider store={store}>
 		<Router history={createBrowserHistory({})}>
-			<App />
+			<AlertProvider template={AlertTemplate} { ...options} >
+				<App />
+			</AlertProvider>
 		</Router>
 	</Provider>,
 	document.getElementById('app')

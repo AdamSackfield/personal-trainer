@@ -5,7 +5,8 @@ const linkList = [
   { name: 'Home', url: '/', class: 'none' },
   { name: 'About', url: '/about', class: 'none' },
   { name: 'Login', url: '/login', class: 'none' },
-  { name: 'Sign Up', url: '/signup', class: 'none' }
+  { name: 'Sign Up', url: '/signup', class: 'none' },
+  { name: 'Dashboard', url: '/dashboard', class: 'none' }
 ]
 
   class Navigation extends Component {
