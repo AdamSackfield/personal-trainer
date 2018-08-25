@@ -7,7 +7,7 @@ const ROOT_URL = 'http://localhost:9898/user/create'
 const onSuccess = (dispatch, type = null, payload = null) => {
   dispatch({ type, payload })
   dispatch({ type: FLASH, payload: 'Account created.' })
-	history.push('/')
+	history.push('/dashboard')
 }
 
 const onError= (dispatch, type = null, payload = null) => {

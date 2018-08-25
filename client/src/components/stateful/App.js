@@ -7,6 +7,7 @@ import Login from "./Ui/Forms/Login";
 import SignUp from "./Ui/Forms/SignUp";
 import Landing from "../stateless/Ui/Pages/Landing";
 import About from "../stateless/Ui/Pages/About";
+import Dashboard from "./Ui/Dashboard/Dashboard";
 
 class App extends Component{
   render(){
@@ -19,6 +20,7 @@ class App extends Component{
           <Route path='/about' exact component={About} />
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={SignUp} />
+          <Route path='/dashboard'exact component={Dashboard} />
         </Switch>
       </div>
     );
