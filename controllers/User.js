@@ -1,7 +1,12 @@
 const express = require('express')
-const bcrypt = require('bcrypt')
+const Bcrypt = require('bcrypt')
 const User = require('../models/User')
+const jwt = require('jwt-simple')
 
+const userToken = user => {
+  const timeStamp = new Date().getTime()
+  return jwt.encode({ sub: user._id, iat: timeStamp }, 'SECRETKEY')
+}
 
 const getUsers = (req, res) => {
   User.find({}, (err, users) => {
@@ -24,7 +29,7 @@ const createUser = (req, res) => {
     username: req.body.username
   })
 
-  bcrypt.genSalt(10, (err, salt) => {
+  Bcrypt.genSalt(10, (err, salt) => {
     if(err) {
       return res.status(400).json({
         success: false,
@@ -33,9 +38,9 @@ const createUser = (req, res) => {
       })
     }
     console.log('PASSWORD', req.body)
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
+    Bcrypt.hash(req.body.password, salt, (err, hash) => {
       if(err) {
-        return res.status(401).json({
+        return res.status(400).json({
           success: false,
           message: 'Bcrypt Hash Error',
           error: err
@@ -46,7 +51,7 @@ const createUser = (req, res) => {
 
       User.register(newUser, (err, user) => {
         if(err) {
-          return res.status(402).json({
+          return res.status(400).json({
             success: false,
             message: 'Failed to GET:[USERS]',
             error: err
@@ -59,10 +64,18 @@ const createUser = (req, res) => {
       })
     })
   })
-  
+}
+
+const signIn = (req, res) => {
+  res.json({
+    success: true,
+    user: req.user,
+    token: userToken(req.user)
+  })
 }
 
 module.exports = {
   getUsers,
-  createUser
+  createUser,
+  signIn
 }
