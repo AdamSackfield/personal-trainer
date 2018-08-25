@@ -59,6 +59,7 @@ const createUser = (req, res) => {
         }
         res.json({ 
           success: true,
+          message: 'Sign Up Success',
           user
         })
       })
@@ -70,6 +71,7 @@ const signIn = (req, res) => {
   res.json({
     success: true,
     user: req.user,
+    message: 'Login Success',
     token: userToken(req.user)
   })
 }
