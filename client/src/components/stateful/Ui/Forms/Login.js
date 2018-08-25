@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../../../actions/User/UserActions';
-import withAlert from 'react-alert';
+import { withAlert } from 'react-alert';
 
 import FormBuilder from '../../../stateless/Ui/Forms/FormBuilder';
 
