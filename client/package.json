@@ -24,6 +24,7 @@
     "bulma": "^0.7.1",
     "bulma-extensions": "^2.2.1",
     "history": "^4.7.2",
+    "jwt-simple": "^0.5.1",
     "prop-types": "^15.6.2",
     "react-alert": "^4.0.4",
     "react-alert-template-basic": "^1.0.0",
