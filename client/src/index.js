@@ -14,14 +14,21 @@ import store from './store/store'
 import { Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 const options = {
-  position: 'bottom center',
+  position: 'top center',
   timeout: 5000,
   offset: '30px',
   transition: 'scale'
 }
 
 import './index.scss';
+import { dashboard } from './actions/User/UserActions';
+import { AUTHENTICATED } from './actions/types';
 
+const token = localStorage.getItem('token')
+if(token) {
+	dashboard()
+	store.dispatch({ type: AUTHENTICATED })
+}
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../../hoc/history'
-import { REGISTER, FLASH, AUTHENTICATED } from '../types';
+import { REGISTER, FLASH, DASHBOARD, LOGIN } from '../types';
 
 const ROOT_URL = 'http://localhost:9898/user'
 
@@ -35,9 +35,22 @@ export function login({ username, password }) {
     try {
       const response = await axios.post(`${ROOT_URL}/login`, { username, password})
         localStorage.setItem('token', response.data.token)
-        return onSuccess(dispatch, AUTHENTICATED, response.data, '/dashboard')
+        return onSuccess(dispatch, LOGIN, response.data, '/dashboard')
     } catch(error) {
         return onError(dispatch, FLASH, 'Login Failed')
+    }
+  }
+}
+
+export function dashboard() {
+  let token = localStorage.getItem('token')
+  return async dispatch => {
+    try {
+      const response = await axios.get(`${ROOT_URL}/dashboard`, { headers: { Authorization: `Bearer ${token}`}})
+        console.log('DASH', response.data.user)
+        return onSuccess(dispatch, DASHBOARD, response.data)
+    } catch(error) {
+        return onError(dispatch, FLASH, `Dashboard Server Error ${error}`)
     }
   }
 }

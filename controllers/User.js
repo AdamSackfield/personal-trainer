@@ -76,8 +76,36 @@ const signIn = (req, res) => {
   })
 }
 
+const authenticate = (req, res) => {
+  res.json({
+    success: true,
+    user: req.user,
+    message: 'Dashboard Success'
+  })
+}
+
+const dashboard = (req, res) => {
+  User.findById(req.user._id, (err, user) => {
+    // if(err) {
+    //   res.json({
+    //     success: false,
+    //     message: 'Dashboard Failed to get User',
+    //     error: err
+    //   })
+    // }
+    if(user) {
+      res.json({
+        success: true, 
+        message: 'Dashboard Success',
+        user: user
+      })
+    }
+  })
+}
+
 module.exports = {
   getUsers,
   createUser,
-  signIn
+  signIn,
+  dashboard
 }

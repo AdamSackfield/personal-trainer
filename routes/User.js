@@ -11,5 +11,6 @@ const requireAuth = passport.authenticate('jwt', { session: false })
 Router.get('/list', UserController.getUsers)
 Router.post('/create', UserController.createUser)
 Router.post('/login', requireSignin, UserController.signIn)
+Router.get('/dashboard', requireAuth, UserController.dashboard)
 
 module.exports = Router
